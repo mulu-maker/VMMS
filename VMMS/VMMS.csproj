@@ -1,0 +1,713 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B034F303-7C85-49D1-A718-53D862E57840}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>VMMS</RootNamespace>
+    <AssemblyName>VMMS</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>D:\Other\VMMS\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>2.0.0.0</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>false</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>vmms.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>22523B6D1DCA005EB56899D746BE9841CC2AEBC5</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>VMMS_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Gu.Wpf.NumericInput, Version=0.5.5.0, Culture=neutral, PublicKeyToken=e6e2e1b32408e0fd, processorArchitecture=MSIL">
+      <HintPath>..\packages\Gu.Wpf.NumericInput.0.5.5\lib\net45\Gu.Wpf.NumericInput.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.6.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Configuration.6.0.0\lib\net461\Microsoft.Extensions.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration.Abstractions, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Configuration.Abstractions.6.0.0\lib\net461\Microsoft.Extensions.Configuration.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration.Binder, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Configuration.Binder.6.0.0\lib\net461\Microsoft.Extensions.Configuration.Binder.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.6.0.0\lib\net461\Microsoft.Extensions.DependencyInjection.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.Abstractions.6.0.0\lib\net461\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.6.0.0\lib\net461\Microsoft.Extensions.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\lib\net461\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging.Configuration, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.Configuration.6.0.0\lib\net461\Microsoft.Extensions.Logging.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging.Console, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.Console.6.0.0\lib\net461\Microsoft.Extensions.Logging.Console.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Options, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Options.6.0.0\lib\net461\Microsoft.Extensions.Options.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Options.ConfigurationExtensions, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Options.ConfigurationExtensions.6.0.0\lib\net461\Microsoft.Extensions.Options.ConfigurationExtensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Primitives, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Primitives.6.0.0\lib\net461\Microsoft.Extensions.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI, Version=2.5.3.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.5.3\lib\net45\NPOI.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OOXML, Version=2.5.3.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.5.3\lib\net45\NPOI.OOXML.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXml4Net, Version=2.5.3.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.5.3\lib\net45\NPOI.OpenXml4Net.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXmlFormats, Version=2.5.3.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.5.3\lib\net45\NPOI.OpenXmlFormats.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfSharp, Version=6.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\PDFsharp.6.1.0-preview-2\lib\netstandard2.0\PdfSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfSharp.Charting, Version=6.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\PDFsharp.6.1.0-preview-2\lib\netstandard2.0\PdfSharp.Charting.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfSharp.Quality, Version=6.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\PDFsharp.6.1.0-preview-2\lib\netstandard2.0\PdfSharp.Quality.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfSharp.Snippets, Version=6.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\PDFsharp.6.1.0-preview-2\lib\netstandard2.0\PdfSharp.Snippets.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfSharp.System, Version=6.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\PDFsharp.6.1.0-preview-2\lib\netstandard2.0\PdfSharp.System.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfSharp.WPFonts, Version=6.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\PDFsharp.6.1.0-preview-2\lib\netstandard2.0\PdfSharp.WPFonts.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.SQLite, Version=1.0.113.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.113.3\lib\net46\System.Data.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.SQLite.EF6, Version=1.0.113.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SQLite.EF6.1.0.113.0\lib\net46\System.Data.SQLite.EF6.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.SQLite.Linq, Version=1.0.113.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SQLite.Linq.1.0.113.0\lib\net46\System.Data.SQLite.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Diagnostics.DiagnosticSource, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Diagnostics.DiagnosticSource.6.0.0\lib\net461\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime" />
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.InteropServices.RuntimeInformation.4.3.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Text.Encodings.Web, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Encodings.Web.6.0.0\lib\net461\System.Text.Encodings.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Json.6.0.0\lib\net461\System.Text.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Base\Car\WindowCarMileage.xaml.cs">
+      <DependentUpon>WindowCarMileage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Bill\Out\WindowBillExit.xaml.cs">
+      <DependentUpon>WindowBillExit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Bill\In\WindowBillBack.xaml.cs">
+      <DependentUpon>WindowBillBack.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Base\Car\ContentCarManage.xaml.cs">
+      <DependentUpon>ContentCarManage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Base\Car\DalCar.cs" />
+    <Compile Include="Base\Car\ObjCar.cs" />
+    <Compile Include="Base\Car\WindowCar.xaml.cs">
+      <DependentUpon>WindowCar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Bill\WindowBillMove.xaml.cs">
+      <DependentUpon>WindowBillMove.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Bill\ObjBillPrint.cs" />
+    <Compile Include="Report\ContentCarDate.xaml.cs">
+      <DependentUpon>ContentCarDate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Report\ContentInsuranceNext.xaml.cs">
+      <DependentUpon>ContentInsuranceNext.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Report\ContentSalesCostList.xaml.cs">
+      <DependentUpon>ContentSalesCostList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Report\ContentCarLog.xaml.cs">
+      <DependentUpon>ContentCarLog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Report\ContentCarNext.xaml.cs">
+      <DependentUpon>ContentCarNext.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Setting\InsuranceCompany\ContentInsuranceCompanyManage.xaml.cs">
+      <DependentUpon>ContentInsuranceCompanyManage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Setting\InsuranceCompany\DalInsuranceCompany.cs" />
+    <Compile Include="Setting\InsuranceCompany\ObjInsuranceCompany.cs" />
+    <Compile Include="Setting\InsuranceCompany\WindowInsuranceCompany.xaml.cs">
+      <DependentUpon>WindowInsuranceCompany.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Setting\Remark\ContentRemarkManage.xaml.cs">
+      <DependentUpon>ContentRemarkManage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Setting\Remark\DalRemark.cs" />
+    <Compile Include="Setting\Remark\ObjRemark.cs" />
+    <Compile Include="Setting\Remark\WindowRemark.xaml.cs">
+      <DependentUpon>WindowRemark.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Setting\Model\WindowModelProduct.xaml.cs">
+      <DependentUpon>WindowModelProduct.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Base\Product\WindowProductSelectLocation.xaml.cs">
+      <DependentUpon>WindowProductSelectLocation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Base\Product\WindowProductSelect.xaml.cs">
+      <DependentUpon>WindowProductSelect.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Setting\Content\ContentContentManage.xaml.cs">
+      <DependentUpon>ContentContentManage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Setting\Content\DalContent.cs" />
+    <Compile Include="Setting\Content\ObjContent.cs" />
+    <Compile Include="Setting\Content\WindowContent.xaml.cs">
+      <DependentUpon>WindowContent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Setting\Item\ContentItemManage.xaml.cs">
+      <DependentUpon>ContentItemManage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Setting\Item\DalItem.cs" />
+    <Compile Include="Setting\Item\ObjItem.cs" />
+    <Compile Include="Setting\Item\WindowItem.xaml.cs">
+      <DependentUpon>WindowItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Setting\Location\ContentLocationManage.xaml.cs">
+      <DependentUpon>ContentLocationManage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Setting\Location\DalLocation.cs" />
+    <Compile Include="Setting\Location\ObjLocation.cs" />
+    <Compile Include="Setting\Location\WindowLocation.xaml.cs">
+      <DependentUpon>WindowLocation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Setting\Model\ContentModelManage.xaml.cs">
+      <DependentUpon>ContentModelManage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Setting\Model\DalModel.cs" />
+    <Compile Include="Setting\Model\ObjModel.cs" />
+    <Compile Include="Setting\Model\WindowModel.xaml.cs">
+      <DependentUpon>WindowModel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Help\WindowAbout.xaml.cs">
+      <DependentUpon>WindowAbout.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Bill\ContentBillManage.xaml.cs">
+      <DependentUpon>ContentBillManage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Bill\DalBill.cs" />
+    <Compile Include="Bill\ObjBill.cs" />
+    <Compile Include="Bill\In\WindowBillIn.xaml.cs">
+      <DependentUpon>WindowBillIn.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Bill\Out\WindowBillRepair.xaml.cs">
+      <DependentUpon>WindowBillRepair.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Report\ContentProductInOutList.xaml.cs">
+      <DependentUpon>ContentProductInOutList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Report\ContentInventoryList.xaml.cs">
+      <DependentUpon>ContentInventoryList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Base\Product\ContentProductManage.xaml.cs">
+      <DependentUpon>ContentProductManage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Base\Product\DalProduct.cs" />
+    <Compile Include="Base\Product\ObjProduct.cs" />
+    <Compile Include="Base\Product\WindowProduct.xaml.cs">
+      <DependentUpon>WindowProduct.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Setting\ProductType\ContentProductTypeManage.xaml.cs">
+      <DependentUpon>ContentProductTypeManage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Setting\ProductType\DalProductType.cs" />
+    <Compile Include="Setting\ProductType\ObjProductType.cs" />
+    <Compile Include="Setting\ProductType\WindowProductType.xaml.cs">
+      <DependentUpon>WindowProductType.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Setting\Store\StoreSetting.cs" />
+    <Compile Include="Setting\Store\WindowStore.xaml.cs">
+      <DependentUpon>WindowStore.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Setting\Unit\ContentUnitManage.xaml.cs">
+      <DependentUpon>ContentUnitManage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Setting\Unit\DalUnit.cs" />
+    <Compile Include="Setting\Unit\ObjUnit.cs" />
+    <Compile Include="Setting\Unit\WindowUnit.xaml.cs">
+      <DependentUpon>WindowUnit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Base\Customer\ContentCustomerManage.xaml.cs">
+      <DependentUpon>ContentCustomerManage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Base\Customer\DalCustomer.cs" />
+    <Compile Include="Base\Customer\ObjCustomer.cs" />
+    <Compile Include="Base\Customer\WindowCustomer.xaml.cs">
+      <DependentUpon>WindowCustomer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="_DAL\DalDataConfig.cs" />
+    <Compile Include="Base\User\ContentUserManage.xaml.cs">
+      <DependentUpon>ContentUserManage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Base\User\DalUser.cs" />
+    <Compile Include="Base\User\ObjUser.cs" />
+    <Compile Include="Base\User\WindowUser.xaml.cs">
+      <DependentUpon>WindowUser.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="System\WindowChangePassword.xaml.cs">
+      <DependentUpon>WindowChangePassword.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="System\WindowDataBackup.xaml.cs">
+      <DependentUpon>WindowDataBackup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="System\WindowDataRestore.xaml.cs">
+      <DependentUpon>WindowDataRestore.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="System\WindowPassword.xaml.cs">
+      <DependentUpon>WindowPassword.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="_Base\BaseDataTable.cs" />
+    <Compile Include="_Base\BaseDateTimeClass.cs" />
+    <Compile Include="_Base\BaseDbSQLiteClass.cs" />
+    <Compile Include="_Base\BaseDirClass.cs" />
+    <Compile Include="_Base\BaseEncryptClass.cs" />
+    <Compile Include="_Base\BaseFileClass.cs" />
+    <Compile Include="_Base\BaseListClass.cs" />
+    <Compile Include="_Base\BaseStreamClass.cs" />
+    <Compile Include="_Base\BaseStringClass.cs" />
+    <Compile Include="_Base\BaseWindowClass.cs" />
+    <Compile Include="_Base\BasePrintClass.cs" />
+    <Compile Include="_Conv\ConvNumberColor.cs" />
+    <Compile Include="_Conv\ConvZone.cs" />
+    <Compile Include="_Conv\ConvDateNull.cs" />
+    <Compile Include="_Conv\ConvDateTimeNull.cs" />
+    <Compile Include="_DAL\DalLogin.cs" />
+    <Compile Include="_DAL\DalNPOI.cs" />
+    <Compile Include="_DAL\DalPrompt.cs" />
+    <Compile Include="_DAL\DalSQLite.cs" />
+    <Compile Include="_Enum\BillType\DalBillType.cs" />
+    <Compile Include="_Enum\BillType\EnumBillType.cs" />
+    <Compile Include="_Enum\BillType\ObjBillType.cs" />
+    <Compile Include="_Enum\ProductProperty\DalProductProperty.cs" />
+    <Compile Include="_Enum\ProductProperty\EnumProductProperty.cs" />
+    <Compile Include="_Enum\ProductProperty\ObjProductProperty.cs" />
+    <Compile Include="_Enum\BillStatus\DalStatus.cs" />
+    <Compile Include="_Enum\BillStatus\EnumStatus.cs" />
+    <Compile Include="_Enum\BillStatus\ObjStatus.cs" />
+    <Page Include="Base\Car\WindowCarMileage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Bill\Out\WindowBillExit.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Bill\In\WindowBillBack.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Base\Car\ContentCarManage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Base\Car\WindowCar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Bill\WindowBillMove.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Report\ContentCarDate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Report\ContentInsuranceNext.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Report\ContentSalesCostList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Report\ContentCarLog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Report\ContentCarNext.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Setting\InsuranceCompany\ContentInsuranceCompanyManage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Setting\InsuranceCompany\WindowInsuranceCompany.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Setting\Remark\ContentRemarkManage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Setting\Remark\WindowRemark.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Setting\Model\WindowModelProduct.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Base\Product\WindowProductSelectLocation.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Base\Product\WindowProductSelect.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Setting\Content\ContentContentManage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Setting\Content\WindowContent.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Setting\Item\ContentItemManage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Setting\Item\WindowItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Setting\Location\ContentLocationManage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Setting\Location\WindowLocation.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Setting\Model\ContentModelManage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Setting\Model\WindowModel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Help\WindowAbout.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Bill\ContentBillManage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Bill\In\WindowBillIn.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Bill\Out\WindowBillRepair.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Report\ContentProductInOutList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Report\ContentInventoryList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Base\Product\ContentProductManage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Base\Product\WindowProduct.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Setting\ProductType\ContentProductTypeManage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Setting\ProductType\WindowProductType.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Setting\Store\WindowStore.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Setting\Unit\ContentUnitManage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Setting\Unit\WindowUnit.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Base\Customer\ContentCustomerManage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Base\Customer\WindowCustomer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Base\User\ContentUserManage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Base\User\WindowUser.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="System\WindowChangePassword.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="System\WindowDataBackup.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="System\WindowDataRestore.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="System\WindowPassword.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Content Include="vmms.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <Content Include="Fonts\SourceHanSerifSC-Bold.otf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Fonts\SourceHanSerifSC-ExtraLight.otf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Fonts\SourceHanSerifSC-Heavy.otf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Fonts\SourceHanSerifSC-Light.otf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Fonts\SourceHanSerifSC-Medium.otf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Fonts\SourceHanSerifSC-Regular.otf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Fonts\SourceHanSerifSC-SemiBold.otf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="config\configFile.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\app.manifest" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Apache2.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="license.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="my.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="NumericInput.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 和 x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.113.3\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets" Condition="Exists('..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.113.3\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>这台计算机上缺少此项目引用的 NuGet 程序包。使用“NuGet 程序包还原”可下载这些程序包。有关更多信息，请参见 http://go.microsoft.com/fwlink/?LinkID=322105。缺少的文件是 {0}。</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.113.3\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.113.3\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\build\Microsoft.Extensions.Logging.Abstractions.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\build\Microsoft.Extensions.Logging.Abstractions.targets'))" />
+    <Error Condition="!Exists('..\packages\System.Text.Json.6.0.0\build\System.Text.Json.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\System.Text.Json.6.0.0\build\System.Text.Json.targets'))" />
+  </Target>
+  <Import Project="..\packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\build\Microsoft.Extensions.Logging.Abstractions.targets" Condition="Exists('..\packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\build\Microsoft.Extensions.Logging.Abstractions.targets')" />
+  <Import Project="..\packages\System.Text.Json.6.0.0\build\System.Text.Json.targets" Condition="Exists('..\packages\System.Text.Json.6.0.0\build\System.Text.Json.targets')" />
+</Project>

@@ -1,0 +1,62 @@
+﻿<Window x:Class="VMMS.ContentCarManage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"  
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:VMMS"
+        Title="车辆资料" Height="480" Width="1024" Loaded="Window_Loaded" Closed="DocumentContent_Closed" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.Resources>
+            <local:ConvDateNull x:Key="DateConverter"/>
+        </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Height="30" Orientation="Horizontal" Name="spConditions">
+            <Label Content="VIN" Margin="30,3,0,0" />
+            <TextBox Name="txtVIN"  Text="{Binding Path=VIN,Mode=TwoWay}" Width="100" Margin="0,3,5,3"/>
+            <Label Content="车牌号"  Height="25" Margin="10,3,0,0" />
+            <TextBox Name="txtLicensePlate"  Text="{Binding Path=LicensePlate,Mode=TwoWay}" Width="100" Margin="0,3,5,3"/>
+            <Label Content="车型" Margin="10,3,0,0"/>
+            <ComboBox Name="CboModel"  Width="100" SelectedValue="{Binding Path=ModelGUID,Mode=TwoWay}" Margin="0,3,5,3"/>
+            <Label Content="车主姓名" Margin="10,3,0,0" />
+            <TextBox Name="txtCustomerName"  Text="{Binding Path=CustomerName,Mode=TwoWay}" Width="100" Margin="0,3,5,3"/>
+            <Label Content="手机号"  Height="25" Margin="10,3,0,0" />
+            <TextBox Name="txtMobilePhone"  Text="{Binding Path=MobilePhone,Mode=TwoWay}" Width="100" Margin="0,3,5,3"/>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Height="30" Margin="20,0,0,0" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <Button Content="查询" Name="BtnSearch" Height="25" Margin="15,0,20,0"  Width="75" Click="BtnSearch_Click" />
+            <Button Content="清除条件" Height="25" Name="BtnClear" Margin="15,0,20,0" Width="75" Click="BtnClear_Click" />
+            <Button Content="新增" Name="BtnAdd" Height="25" Margin="15,0,20,0"  Width="75" Click="BtnAdd_Click" />
+            <Button Content="修改" Name="BtnUpdate" Height="25" Margin="15,0,20,0" Width="75" Click="BtnUpdate_Click"/>
+            <Button Content="作废" Name="BtnDelete" Height="25" Margin="15,0,20,0" Width="75" Click="BtnDeleteMark_Click" />
+            <Button Content="还原" Name="BtnReturnMark" Height="25" Margin="15,0,20,0" Width="75" Click="BtnReturnMark_Click" />
+            <Button Content="导入" Name="BtnImport" Height="25" Margin="15,0,20,0" Width="75" Click="BtnImport_Click" />
+            <Button Content="验算里程" Name="BtnCheckMileage" Height="25" Margin="15,0,20,0" Width="75" Click="BtnCheckMileage_Click" />
+            <Button Content="里程记录" Name="BtnMileage" Height="25" Margin="15,0,20,0" Width="75" Click="BtnMileage_Click" />
+        </StackPanel>
+        <DataGrid Grid.Row="2" AutoGenerateColumns="False"  HorizontalAlignment="Stretch" Margin="0,0,0,0" Name="dataGrid1" VerticalAlignment="Stretch" ItemsSource="{Binding}" IsReadOnly="True" ColumnWidth="1*">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="编号" Binding="{Binding Path=CarCode}"/>
+                <DataGridTextColumn Header="VIN" Binding="{Binding Path=VIN}" Width="150"/>
+                <DataGridTextColumn Header="车牌号" Binding="{Binding Path=LicensePlate}"/>
+                <DataGridTextColumn Header="里程" Binding="{Binding TotalMileage,StringFormat={}\{0:N0\}}">
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="DataGridCell">
+                            <Setter Property="HorizontalAlignment" Value="Right"></Setter>
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
+                </DataGridTextColumn>
+                <DataGridComboBoxColumn Header="车型" SelectedValueBinding="{Binding Path=ModelGUID}"/>
+                <DataGridTextColumn Header="发动机" Binding="{Binding Path=EngineModel}"/>
+                <DataGridTextColumn Header="排量" Binding="{Binding Path=EngineCapacity}"/>
+                <DataGridTextColumn Header="车身颜色" Binding="{Binding Path=CarColor}"/>
+                <DataGridTextColumn Header="生产日期" Binding="{Binding Path=ManufactureDate,StringFormat={}\{0:yyyy-MM-dd\},Converter={StaticResource DateConverter}}" MinWidth="120" />
+                <DataGridTextColumn Header="车主" Binding="{Binding Path=CustomerName}"/>
+                <DataGridTextColumn Header="手机号" Binding="{Binding Path=MobilePhone}" MinWidth="90"/>
+                <DataGridCheckBoxColumn Header="作废" Binding="{Binding DeleteMark}"/>
+                <DataGridTextColumn Header="操作时间" Binding="{Binding Path=Uptime,StringFormat={}\{0:yyyy-MM-dd HH:mm\}}" Width="1*" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>

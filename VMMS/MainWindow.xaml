@@ -1,0 +1,187 @@
+﻿<!--
+Copyright (c) 2021 dinid
+汽车维修管理系统VMMS is licensed under Mulan PubL v2.
+You can use this software according to the terms and conditions of the Mulan PubL v2.
+You may obtain a copy of Mulan PubL v2 
+THIS SOFTWARE IS PROVIDED ON AN "AS IS" BASIS, WITHOUT WARRANTIES OF ANY KIND,
+EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO NON-INFRINGEMENT,
+MERCHANTABILITY OR FIT FOR A PARTICULAR PURPOSE.
+See the Mulan PubL v2 for more details.
+-->
+<Window x:Class="VMMS.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="汽车维修管理系统 VMMS" Loaded="Window_Loaded" Closed="Window_Closed" WindowState="Maximized" Height="600" Width="1024">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="30" />
+        </Grid.RowDefinitions>
+        <DockPanel Grid.Row="0" Grid.ColumnSpan="2" Height="25" HorizontalAlignment="Stretch" Name="dockPanelMain" VerticalAlignment="Top">
+            <Menu Grid.Row="0" Name="menuMain" FontSize="12">
+                <MenuItem Header="系统">
+                    <MenuItem Header="修改密码" Name="MiManagePwd" Click="MiManagePwd_Click" />
+                    <MenuItem Header="数据备份" Name="MiDataBackup" Click="MiDataBackup_Click" />
+                    <MenuItem Header="数据恢复" Name="MiDataRestore" Click="MiDataRestore_Click" />
+                    <Separator />
+                    <MenuItem Header="退出" Name="MiExit" Click="MiExit_Click" />
+                </MenuItem>
+                <MenuItem Header="库存管理">
+                    <MenuItem Header="单据管理" Name="MiBillManage" Click="MiBillManage_Click"/>
+                    <MenuItem Header="即时库存表" Name="MiInventoryList" Click="MiInventoryList_Click"/>
+                    <MenuItem Header="出入库明细表" Name="MiBillProductList" Click="MiBillProductList_Click"/>
+                    <MenuItem Header="收入成本明细表" Name="MiSalesCostList" Click="MiSalesCostList_Click"/>
+                    <MenuItem Header="库存重算" Name="MiCalc" Click="MiCalc_Click" />
+                    <MenuItem Header="批量替换重复备件并作废" Name="MiRepeat" Click="MiRepeat_Click" Visibility="Collapsed"/>
+                </MenuItem>
+                <MenuItem Header="备件管理">
+                    <MenuItem Header="库位管理" Name="MiLocationManage" Click="MiLocationManage_Click"/>
+                    <MenuItem Header="计量单位" Name="MiUnitManage" Click="MiUnitManage_Click"/>
+                    <MenuItem Header="备件类别" Name="MiProductTypeManage" Click="MiProductTypeManage_Click"/>
+                    <MenuItem Header="备件资料" Name="MiProductManage" Click="MiProductManage_Click"/>
+                </MenuItem>
+                <MenuItem Header="车辆资料">
+                    <MenuItem Header="车型管理" Name="MiModelManage" Click="MiModelManage_Click"/>
+                    <MenuItem Header="车辆资料" Name="MiCarManage" Click="MiCarManage_Click"/>
+                    <MenuItem Header="车辆维修记录" Name="MiCarLog" Click="MiCarLog_Click"/>
+                    <MenuItem Header="车辆到店提醒" Name="MiCarDate" Click="MiCarDate_Click"/>
+                    <MenuItem Header="到期保养提醒" Name="MiCarNext" Click="MiCarNext_Click"/>
+                    <MenuItem Header="保险到期提醒" Name="MiInsuranceNext" Click="MiInsuranceNext_Click"/>
+                </MenuItem>
+                <MenuItem Header="系统设置">
+                    <MenuItem Header="供应商资料" Name="MiCustomerManage" Click="MiCustomerManage_Click"/>
+                    <MenuItem Header="员工资料" Name="MiUserManage" Click="MiUserManage_Click"/>
+                    <MenuItem Header="维修项目" Name="MiItemManage" Click="MiItemManage_Click"/>
+                    <MenuItem Header="维修内容" Name="MiContentManage" Click="MiContentManage_Click"/>
+                    <MenuItem Header="保险公司" Name="MiInsuranceCompanyManage" Click="MiInsuranceCompanyManage_Click"/>
+                    <MenuItem Header="备注内容" Name="MiRemarkManage" Click="MiRemarkManage_Click"/>
+                    <MenuItem Header="门店设置" Name="StoreSetup" Click="StoreSetup_Click"/>
+                </MenuItem>
+                <MenuItem Header="帮助">
+                    <MenuItem Header="关于软件" Name="MiAboutBox" Click="MiAboutBox_Click"/>
+                </MenuItem>
+            </Menu>
+        </DockPanel>
+        <Viewbox  Grid.Row="1" Grid.ColumnSpan="2" Stretch="UniformToFill"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <Canvas Width="1366" Height="768">
+                <Grid Margin="200,20,0,20">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="180"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="100"/>
+                        <RowDefinition Height="100"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="100"/>
+                        <RowDefinition Height="10"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <Button Grid.Column="0" Grid.Row="0" x:Name="BtnExit" Content="退货单" Height="50" Width="100" HorizontalAlignment="Center" VerticalAlignment="Bottom" Click="BtnExit_Click" RenderTransformOrigin="0.5,0.508"/>
+                    <Button Grid.Column="2" Grid.Row="0" x:Name="BtnMove" Content="调拨单" Height="50" Width="100" HorizontalAlignment="Center" VerticalAlignment="Bottom" Click="BtnMove_Click"/>
+                    <Button Grid.Column="4" Grid.Row="0" x:Name="BtnBack" Content="退库单" Height="50" Width="100" HorizontalAlignment="Center" VerticalAlignment="Bottom" Click="BtnBack_Click"/>
+                    <Line Grid.Column="0" Grid.Row="1" X1="0" Y1="0" X2="0" Y2="180" Stroke="Blue" StrokeThickness="5" HorizontalAlignment="Center" />
+                    <Line Grid.Column="4" Grid.Row="1" X1="0" Y1="0" X2="0" Y2="180" Stroke="Blue" StrokeThickness="5" HorizontalAlignment="Center" />
+                    <Button Grid.Column="0" Grid.Row="2" x:Name="BtnIn" Content="入库单" Height="50" Width="100" HorizontalAlignment="Center" VerticalAlignment="Top" Click="BtnIn_Click"/>
+                    <Line Grid.Column="1" Grid.Row="2" X1="0" Y1="0" X2="150" Y2="0" Stroke="Blue" StrokeThickness="5" VerticalAlignment="Center" Margin="0,20,0,50"/>
+                    <Line Grid.Column="2" Grid.Row="1" X1="0" Y1="0" X2="0" Y2="180" Stroke="Blue" StrokeThickness="5" HorizontalAlignment="Center" />
+                    <Button Grid.Column="2" Grid.Row="2" x:Name="BtnBillManage" Content="单据管理" Height="50" Width="100" HorizontalAlignment="Center" VerticalAlignment="Top" Click="BtnBillManage_Click"/>
+                    <Line Grid.Column="2" Grid.Row="3" X1="0" Y1="0" X2="0" Y2="150" Stroke="Blue" StrokeThickness="5" HorizontalAlignment="Center" Visibility="Collapsed"/>
+                    <Line Grid.Column="3" Grid.Row="2" X1="0" Y1="0" X2="150" Y2="0" Stroke="Blue" StrokeThickness="5" VerticalAlignment="Center" Margin="0,20,0,50"/>
+                    <Button Grid.Column="4" Grid.Row="2" x:Name="BtnRepair" Content="维修单" Height="50" Width="100" HorizontalAlignment="Center" VerticalAlignment="Top" Click="BtnRepair_Click"/>
+                    <TextBlock x:Name="tbNotComplete" Grid.Row="3" Grid.ColumnSpan="5">
+                        <Hyperlink x:Name="hlNext" Click="hlNext_Click">
+                            <TextBlock x:Name="txtNotComplete" Text="" />
+                        </Hyperlink>
+                    </TextBlock>
+                    <StackPanel Grid.Column="6" Grid.Row="0" Grid.RowSpan="7" Margin="50,0,20,0">
+                        <TextBlock Margin="5,5,5,5" Text="统计报表"/>
+                        <TextBlock Margin="5,5,5,5">
+                        <Hyperlink Click="MiInventoryList_Click">即时库存表</Hyperlink>
+                        </TextBlock>
+                        <TextBlock Margin="5,5,5,5">
+                        <Hyperlink Click="MiBillProductList_Click">出入库明细表</Hyperlink>
+                        </TextBlock>
+                        <TextBlock Margin="5,5,5,5">
+                        <Hyperlink Click="MiSalesCostList_Click">收入成本明细表</Hyperlink>
+                        </TextBlock>
+                        <TextBlock Margin="5,5,5,5">
+                        <Hyperlink Click="MiCarLog_Click">车辆维修记录</Hyperlink>
+                        </TextBlock>
+                        <TextBlock Margin="5,5,5,5">
+                        <Hyperlink Click="MiCarDate_Click">车辆到店提醒</Hyperlink>
+                        </TextBlock>
+                        <TextBlock Margin="5,5,5,5">
+                        <Hyperlink Click="MiCarNext_Click">到期保养提醒</Hyperlink>
+                        </TextBlock>
+                        <TextBlock Margin="5,5,5,5">
+                        <Hyperlink Click="MiInsuranceNext_Click">保险到期提醒</Hyperlink>
+                        </TextBlock>
+                        <TextBlock Margin="5,5,5,5" Text="基础资料"/>
+                        <TextBlock Margin="5,5,5,5">
+                        <Hyperlink Click="MiCarManage_Click">车辆资料</Hyperlink>
+                        </TextBlock>
+                        <TextBlock Margin="5,5,5,5">
+                        <Hyperlink Click="MiProductManage_Click">备件资料</Hyperlink>
+                        </TextBlock>
+                        <TextBlock Margin="5,5,5,5">
+                        <Hyperlink Click="MiUserManage_Click">员工资料</Hyperlink>
+                        </TextBlock>
+                        <TextBlock Margin="5,5,5,5">
+                        <Hyperlink Click="MiCustomerManage_Click">供应商资料</Hyperlink>
+                        </TextBlock>
+                        <TextBlock Margin="5,5,5,5" Text="参数设置"/>
+                        <TextBlock Margin="5,5,5,5">
+                        <Hyperlink Click="MiItemManage_Click">维修项目</Hyperlink>
+                        </TextBlock>
+                        <TextBlock Margin="5,5,5,5">
+                        <Hyperlink Click="MiContentManage_Click">维修内容</Hyperlink>
+                        </TextBlock>
+                        <TextBlock Margin="5,5,5,5">
+                        <Hyperlink Click="MiInsuranceCompanyManage_Click">保险公司</Hyperlink>
+                        </TextBlock>
+                        <TextBlock Margin="5,5,5,5">
+                        <Hyperlink Click="MiRemarkManage_Click">备注内容</Hyperlink>
+                        </TextBlock>
+                        <TextBlock Margin="5,5,5,5">
+                        <Hyperlink Click="MiModelManage_Click">车型管理</Hyperlink>
+                        </TextBlock>
+                        <TextBlock Margin="5,5,5,5">
+                        <Hyperlink Click="MiProductTypeManage_Click">备件类别</Hyperlink>
+                        </TextBlock>
+                        <TextBlock Margin="5,5,5,5">
+                        <Hyperlink Click="MiUnitManage_Click">计量单位</Hyperlink>
+                        </TextBlock>
+                        <TextBlock Margin="5,5,5,5">
+                        <Hyperlink Click="MiLocationManage_Click">库位管理</Hyperlink>
+                        </TextBlock>
+                    </StackPanel>
+                </Grid>
+            </Canvas>
+        </Viewbox>
+        <DockPanel Grid.Row="3" Height="28" HorizontalAlignment="Stretch" Name="dockPanelMainBottom" VerticalAlignment="Bottom">
+            <StatusBar Name="statusBarMain" Height="28" >
+
+            </StatusBar>
+            <Label Content=""  Name="labelLoginName" />
+        </DockPanel>
+        <DockPanel Grid.Row="3" Grid.Column="1" Height="28" HorizontalAlignment="Stretch" VerticalAlignment="Bottom">
+            <StatusBar Name="statusBarCurrentYearMonth" Height="28" >
+            </StatusBar>
+            <Label Content=""  Name="LblCurrentYearMonth" />
+        </DockPanel>
+    </Grid>
+</Window>

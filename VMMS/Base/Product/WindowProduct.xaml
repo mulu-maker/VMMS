@@ -1,0 +1,72 @@
+﻿<Window x:Class="VMMS.WindowProduct"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+        xmlns:local="clr-namespace:VMMS"
+        xmlns:guni="http://gu.se/NumericInput"
+        Title="备件" Height="420" Width="600" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <local:ConvZone x:Key="ZoneConverter"/>
+    </Window.Resources>
+    <Grid Margin="5,10,5,5">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100" />
+            <ColumnDefinition Width="200" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="40" />
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Column="0">
+            <Label Content="编号(*)" Height="25" Margin="15,5,10,5" />
+            <Label Content="名称(*)" Height="25" Margin="15,5,10,5" />
+            <Label Content="助记码" Height="25" Margin="15,5,10,5" />
+            <Label Content="条码" Height="25" Margin="15,5,10,5" />
+            <Label Content="计量单位(*)" Height="25" Margin="15,5,10,5" />
+            <Label Content="类别(*)" Height="25" Margin="15,5,10,5" />
+            <Label Content="性质(*)" Height="25" Margin="15,5,10,5" />
+            <Label Content="单价" Height="25" Margin="15,5,10,5" />
+            <Label Name="lbLocation" Content="默认库位" Height="25" Margin="15,5,10,5" />
+        </StackPanel>
+        <StackPanel Grid.Column="1">
+            <TextBox Name="txtCode" Text="{Binding ProductCode,Mode=TwoWay}" TabIndex="0" Height="25" Margin="5,5,10,5" />
+            <TextBox Name="txtName" Text="{Binding ProductName,Mode=TwoWay}" TabIndex="1" Height="25" Margin="5,5,10,5" LostFocus="txtName_LostFocus"/>
+            <TextBox Name="txtMnemonicCode" Text="{Binding MnemonicCode,Mode=TwoWay}" TabIndex="2" Height="25" Margin="5,5,10,5" />
+            <TextBox Name="txtBarcode" Text="{Binding Barcode,Mode=TwoWay}" TabIndex="3" Height="25" Margin="5,5,10,5" />
+            <ComboBox Name="CboUnit" SelectedValue="{Binding Path=UnitGUID,Mode=TwoWay}" TabIndex="4" Height="25" Margin="5,5,10,5"/>
+            <ComboBox Name="CboType" SelectedValue="{Binding Path=TypeGUID,Mode=TwoWay}" TabIndex="5" Height="25" Margin="5,5,10,5" SelectionChanged="CboType_SelectionChanged"/>
+            <ComboBox Name="CboProperty" SelectedValue="{Binding Path=PropertyID,Mode=TwoWay}" TabIndex="6" Height="25" Margin="5,5,10,5" IsHitTestVisible="False" SelectionChanged="CboProperty_SelectionChanged_1"/>
+            <guni:DecimalBox Name="txtPrice" Value="{Binding Price,Mode=TwoWay,Converter={StaticResource ZoneConverter}}" TabIndex="7" Height="25" Margin="5,5,10,5" MinValue="0" LostFocus="txtPrice_LostFocus"/>
+            <ComboBox Name="CboLocation" SelectedValue="{Binding Path=LocationGUID,Mode=TwoWay}" TabIndex="8" Height="25" Margin="5,5,10,5"/>
+        </StackPanel>
+        <GroupBox Grid.Column="2" Header="适配车型">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="1*" />
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0" Grid.ColumnSpan="2"  Height="30" Margin="10,5,0,0" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
+                    <Label Content="车型"  Margin="0,3,0,3" Visibility="Collapsed"/>
+                    <ComboBox Name="CboModel" SelectedValue="{Binding ModelGUID,Mode=TwoWay}"  Width="200" Height="25" />
+                </StackPanel>
+                <StackPanel Grid.Row="1" Grid.ColumnSpan="2"  Height="30" Margin="10,5,0,0" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
+                    <!--<Button Content="插入" Name="BtnInsert" Margin="5,0,10,0"  Height="25" Width="35" Click="BtnInsert_Click" Visibility="Collapsed"/>-->
+                    <Button Content="新增" Name="BtnAdd" Margin="5,3,10,0" Height="25" Width="35" Click="BtnAdd_Click" VerticalAlignment="Top"/>
+                    <Button Content="删除" Height="25" Name="BtnDelete" Margin="5,0,10,0"  Width="35" Click="BtnDelete_Click" />
+                </StackPanel>
+                <DataGrid Grid.Row="2" ColumnWidth="auto" Name="dataGrid1" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="序号" Binding="{Binding Path=ModelID,Mode=TwoWay}" IsReadOnly="True" Visibility="Collapsed"/>
+                        <DataGridTextColumn Header="编号" Binding="{Binding Path=ModelCode,Mode=TwoWay}" />
+                        <DataGridTextColumn Header="名称" Binding="{Binding Path=ModelName,Mode=TwoWay}" Width="1*"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </GroupBox>
+        <StackPanel Grid.Row="1" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Center" >
+            <Button Content="确认" Margin="0,0,0,15" Width="75" Name="BtnOK" Click="BtnOK_Click" TabIndex="8" />
+            <Button Content="取消" Margin="60,0,0,15" Width="75" Name="BtnCancel" Click="BtnCancel_Click" TabIndex="9"/>
+        </StackPanel>
+    </Grid>
+</Window>

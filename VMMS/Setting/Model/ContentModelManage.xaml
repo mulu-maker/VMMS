@@ -1,0 +1,28 @@
+﻿<Window x:Class="VMMS.ContentModelManage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"        
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"        
+        Title="车型管理" Height="600" Width="800"  Loaded="Window_Loaded"  WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Margin="20,10,0,0" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <!--<Button Content="查询" Height="25" Name="btnSearch" Margin="0,0,20,0"  Width="75" Click="btnSearch_Click"/>-->
+            <!--<Button Content="清除条件" Height="25" Name="btnClear" Margin="15,0,20,0" Width="75" Click="btnClear_Click" Visibility="Collapsed"/>-->
+            <Button Content="新增" Name="BtnAdd" Height="25" Margin="15,0,20,0"  Width="75" Click="BtnAdd_Click" />
+            <Button Content="修改" Name="BtnUpdate" Height="25" Margin="15,0,20,0" Width="75" Click="BtnUpdate_Click"/>
+            <Button Content="删除" Name="BtnDeleteMark" Height="25" Margin="15,0,20,0" Width="75" Click="BtnDeleteMark_Click" />
+            <Button Content="导入" Name="BtnImport" Height="25" Margin="15,0,20,0" Width="75" Click="BtnImport_Click" />
+            <Button Content="车型备件" Name="BtnProduct" Height="25" Margin="15,0,20,0" Width="75" Click="BtnProduct_Click" />
+        </StackPanel>
+        <DataGrid Grid.Row="1" AutoGenerateColumns="False" HorizontalAlignment="Stretch" Margin="0,0,0,0" Name="dataGrid1" VerticalAlignment="Stretch" IsReadOnly="True" ColumnWidth="1*">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding ModelID}" Visibility="Collapsed" />
+                <DataGridTextColumn Header="编号" Binding="{Binding ModelCode}"/>
+                <DataGridTextColumn Header="品牌型号" Binding="{Binding ModelName}"/>
+                <DataGridTextColumn Header="日期" Binding="{Binding Path=Uptime,StringFormat={}\{0:yyyy-MM-dd HH:mm\}}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>

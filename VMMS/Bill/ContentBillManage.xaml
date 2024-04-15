@@ -1,0 +1,146 @@
+﻿<Window x:Class="VMMS.ContentBillManage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:VMMS"
+        Title="单据管理" Height="600" Width="1280"  Loaded="Window_Loaded" WindowState="Maximized" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.Resources>
+            <local:ConvDateNull x:Key="DateConverter" />
+            <local:ConvDateTimeNull x:Key="DateTimeConverter" />
+        </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Height="30" Name="spConditions">
+            <Label Content="日期" Margin="10,3,0,0" />
+            <DatePicker  Name="dpStart" SelectedDate="{Binding DateStart,Mode=TwoWay}" DisplayDate="{Binding DateStart,Mode=TwoWay}" Margin="0,3,0,0" Width="100" />
+            <Label Content="—" />
+            <DatePicker  Name="dpEnd" SelectedDate="{Binding DateEnd,Mode=TwoWay}" DisplayDate="{Binding DateEnd,Mode=TwoWay}" Margin="0,3,0,0" Width="100" />
+            <Label Content="单据编号"  Height="25" Margin="10,3,0,3" />
+            <TextBox Name="txtCode"  Text="{Binding Path=BillCode,Mode=TwoWay}"  Height="25" Width="95" Margin="5,0,10,0" />
+            <Label Content="单据类别" Margin="10,3,0,0" />
+            <ComboBox Name="CboType"  Width="100" SelectedValue="{Binding Path=TypeID,Mode=TwoWay}" Margin="5,3,10,3" />
+            <Label Content="供应商" Margin="10,3,0,0" />
+            <ComboBox Name="CboCustomer"  Width="100" SelectedValue="{Binding Path=CustomerGUID,Mode=TwoWay}" Margin="5,3,10,3" />
+            <Label Content="员工" Margin="10,3,0,0" />
+            <ComboBox Name="CboUser"  Width="100" SelectedValue="{Binding Path=UserGUID,Mode=TwoWay}" Margin="5,3,10,3" />
+            <Label Content="状态" Margin="10,3,0,0" />
+            <ComboBox Name="CboStatus"  Width="100" SelectedValue="{Binding Path=StatusID,Mode=TwoWay}" Margin="5,3,10,3" />
+            <Label Content="车主姓名"  Height="25" Margin="10,3,0,3" />
+            <TextBox Name="txtCustomerName"  Text="{Binding Path=CustomerName,Mode=TwoWay}"  Height="25" Width="80" Margin="5,0,10,0" />
+            <!--<Label Content="手机号"  Height="25" Margin="10,5,0,5" />
+            <TextBox Name="txtMobilePhone"  Text="{Binding Path=MobilePhone,Mode=TwoWay}"  Height="25" Width="100" Margin="5,5,10,5" />-->
+            <Label Content="车牌号"  Height="25" Margin="10,3,0,3" />
+            <TextBox Name="txtLicensePlate"  Text="{Binding Path=LicensePlate,Mode=TwoWay}"  Height="25" Width="100" Margin="5,0,10,0" />
+        </StackPanel>
+        <StackPanel Grid.Row="1" Margin="30,10,0,0" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <Button Content="查询" Name="BtnSearch" Height="25" Margin="15,0,20,0"  Width="75" Click="BtnSearch_Click" />
+            <Button Content="清除条件" Height="25" Name="BtnClear" Margin="15,0,20,0" Width="75" Click="BtnClear_Click" />
+            <Button Content="修改" Name="BtnUpdate" Height="25" Margin="15,0,20,0"  Width="75" Click="BtnUpdate_Click" />
+            <Button Content="作废" Name="BtnDeleteMark" Height="25" Margin="15,0,20,0"  Width="75" Click="BtnDeleteMark_Click" />
+            <Button Content="收款" Name="BtnCharge" Height="25" Margin="15,0,20,0"  Width="75" Click="BtnCharge_Click" />
+            <Button Content="打印" Name="BtnPrint" Height="25" Margin="15,0,20,0"  Width="75" Click="BtnPrint_Click" />
+            <Button Content="入库单" Name="BtnIn" Height="25" Margin="15,0,20,0"  Width="75" Click="BtnIn_Click" />
+            <Button Content="退货单" Name="BtnExit" Height="25" Margin="15,0,20,0"  Width="75" Click="BtnExit_Click" />
+            <Button Content="维修单" Name="BtnRepair" Height="25" Margin="15,0,20,0"  Width="75" Click="BtnRepair_Click" />
+            <Button Content="退库单" Name="BtnBack" Height="25" Margin="15,0,20,0"  Width="75" Click="BtnBack_Click" />
+            <Button Content="调拨单" Name="BtnMove" Height="25" Margin="15,0,20,0"  Width="75" Click="BtnMove_Click" />
+        </StackPanel>
+        <Label Grid.Row="2" Name="lb" Margin="40,0,20,0" />
+        <DataGrid Grid.Row="3" AutoGenerateColumns="False" HorizontalAlignment="Stretch" Margin="0,0,0,0" Name="dataGrid1" VerticalAlignment="Stretch" IsReadOnly="True" ColumnWidth="Auto" MouseDoubleClick="dataGrid1_MouseDoubleClick" SelectionChanged="dataGrid1_SelectionChanged">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding BillID}" Visibility="Collapsed" />
+                <DataGridTextColumn Header="日期" Binding="{Binding BillDate,StringFormat={}\{0:yyyy-MM-dd\},Converter={StaticResource DateConverter}}" Width="80" />
+                <DataGridTextColumn Header="编号" Binding="{Binding Path=BillCode}" MinWidth="100" />
+                <DataGridComboBoxColumn Header="单据类别" SelectedValueBinding="{Binding TypeID}" />
+                <DataGridTextColumn Header="原单号" Binding="{Binding Path=SourceCode}" MinWidth="100" />
+                <DataGridComboBoxColumn Header="供应商" SelectedValueBinding="{Binding CustomerGUID}" />
+                <DataGridComboBoxColumn Header="员工" SelectedValueBinding="{Binding UserGUID}" />
+                <DataGridComboBoxColumn Header="维修项目" SelectedValueBinding="{Binding ItemGUID}" />
+                <DataGridTextColumn Header="车牌号" Binding="{Binding LicensePlate}" MinWidth="70" />
+                <DataGridTextColumn Header="车主" Binding="{Binding CustomerName}" Width="Auto" />
+                <DataGridTextColumn Header="送修人" Binding="{Binding SendName}" Width="Auto" />
+                <DataGridTextColumn Header="手机号" Binding="{Binding MobilePhone}" MinWidth="90" />
+                <DataGridTextColumn Header="车辆里程" Binding="{Binding CarMileage,StringFormat={}\{0:D\}}">
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="DataGridCell">
+                            <Setter Property="HorizontalAlignment" Value="Right"></Setter>
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="上次里程" Binding="{Binding TotalMileage,StringFormat={}\{0:D\}}">
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="DataGridCell">
+                            <Setter Property="HorizontalAlignment" Value="Right"></Setter>
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="行驶里程" Binding="{Binding Mileage,StringFormat={}\{0:D\}}">
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="DataGridCell">
+                            <Setter Property="HorizontalAlignment" Value="Right"></Setter>
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="下次保养日期" Binding="{Binding NextMaintenanceDate,StringFormat={}\{0:yyyy-MM-dd\},Converter={StaticResource DateConverter}}" MinWidth="85" />
+                <DataGridTextColumn Header="入库数量合计" Binding="{Binding TotalDebitNumber}">
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="DataGridCell">
+                            <Setter Property="HorizontalAlignment" Value="Right"></Setter>
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="入库成本合计" Binding="{Binding TotalDebitAmount,StringFormat={}\{0:N2\}}" Visibility="Collapsed">
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="DataGridCell">
+                            <Setter Property="HorizontalAlignment" Value="Right"></Setter>
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="出库数量合计" Binding="{Binding TotalCreditNumber}">
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="DataGridCell">
+                            <Setter Property="HorizontalAlignment" Value="Right"></Setter>
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="出库成本合计" Binding="{Binding TotalCreditAmount,StringFormat={}\{0:N2\}}" Visibility="Collapsed">
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="DataGridCell">
+                            <Setter Property="HorizontalAlignment" Value="Right"></Setter>
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="销售金额" Binding="{Binding TotalSalesAmount,StringFormat={}\{0:N2\}}">
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="DataGridCell">
+                            <Setter Property="HorizontalAlignment" Value="Right"></Setter>
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="折扣金额" Binding="{Binding TotalDiffAmount,StringFormat={}\{0:N2\}}">
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="DataGridCell">
+                            <Setter Property="HorizontalAlignment" Value="Right"></Setter>
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="实收金额" Binding="{Binding TotalChargeAmount,StringFormat={}\{0:N2\}}">
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="DataGridCell">
+                            <Setter Property="HorizontalAlignment" Value="Right"></Setter>
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
+                </DataGridTextColumn>
+                <DataGridComboBoxColumn Header="状态" SelectedValueBinding="{Binding StatusID}" />
+                <DataGridTextColumn Header="操作时间" Binding="{Binding Path=Uptime,StringFormat={}\{0:yyyy-MM-dd HH:mm\},Converter={StaticResource DateTimeConverter}}" Width="120" />
+                <DataGridTextColumn Header="完成时间" Binding="{Binding Path=CompleteTime,StringFormat={}\{0:yyyy-MM-dd HH:mm\},Converter={StaticResource DateTimeConverter}}" Width="120" />
+                <DataGridCheckBoxColumn Header="收款" Binding="{Binding IsCharge}" />
+                <DataGridTextColumn Header="收款时间" Binding="{Binding Path=ChargeTime,StringFormat={}\{0:yyyy-MM-dd HH:mm\},Converter={StaticResource DateTimeConverter}}" Width="120" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>

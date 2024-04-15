@@ -1,0 +1,138 @@
+﻿<Window x:Class="VMMS.WindowBillBack"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:VMMS"
+        Title="退库单"  Width="1000" Height="600" WindowState="Normal" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded" >
+    <Window.Resources>
+        <local:ConvNumberColor x:Key="ColorConverter"/>
+    </Window.Resources>
+    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <!--<RowDefinition Height="30" />-->
+            <!--<RowDefinition Height="30" />-->
+            <RowDefinition Height="30" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="25" />
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" Grid.ColumnSpan="3"  Name="txtTitle" Text="    退    库    单    " HorizontalAlignment="Center" Width="600" FontSize="30" TextAlignment="Center" FontWeight="Normal" Margin="0,0,0,0" />
+        <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center">
+            <Label Content="单据号(*)" Margin="10,0,0,0"/>
+            <TextBlock Name="txtCode" Text="{Binding Path=BillCode}" Margin="5,5,10,1" Width="100" />
+            <Label Content="原维修单号(*)" Margin="10,0,0,0"/>
+            <TextBlock Name="txtSourceCode" Height="25" Margin="5,5,10,1" Width="100" > 
+                    <Hyperlink Name="hyperLink" Click="Hyperlink_Click"> 
+                        <Run Text="{Binding Path=SourceCode}" />
+                    </Hyperlink>
+            </TextBlock>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Label Content="日期(*)" />
+            <DatePicker  Name="DpDate" SelectedDate="{Binding Path=BillDate,Mode=TwoWay}" DisplayDate="{Binding Path=BillDate,Mode=TwoWay}"/>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom">         
+            <!--<Button Content="保存" Name="BtnOK" Margin="20,0,10,0" Width="45" Height="25"  Click="BtnOK_Click"/>-->
+            <Button Content="完成" Name="BtnComplete" Margin="20,0,10,0" Width="45" Height="25"  Click="BtnComplete_Click"/>
+            <Button Content="取消"  Name="BtnCancel" Margin="20,0,10,0" Width="45" Height="25" Click="BtnCancel_Click"/>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0">
+            <Label Content="车牌号(*)" Width="70" Margin="10,3,0,3"/>
+            <TextBlock Name="txtLicensePlate" Text="{Binding LicensePlate,Mode=TwoWay}" Width="150" Margin="5,8,0,3" />
+            <Label Content="车辆编号(*)" Margin="10,3,0,3"/>
+            <TextBlock Name="txtCarCode" Text="{Binding CarCode,Mode=TwoWay}" Height="25" Width="70" Margin="0,8,0,3" IsHitTestVisible="False"/>
+            <Label Content="VIN：" Margin="10,3,0,3"/>
+            <TextBlock Name="txtVIN" Text="{Binding VIN,Mode=TwoWay}" Height="25" Width="120" Margin="0,8,0,3" IsHitTestVisible="False"/>
+            <Label Content="车主姓名：" Margin="10,3,0,3"/>
+            <TextBlock Text="{Binding CustomerName,Mode=TwoWay}" Height="25" Width="100" Margin="0,8,0,3" Name="txtCustomerName" IsHitTestVisible="False"/>
+            <Label Content="手机号" Margin="10,3,0,3"/>
+            <TextBox Text="{Binding MobilePhone,Mode=TwoWay}" Width="150" Margin="0,3,0,3" Name="txtMobilePhone" />
+        </StackPanel>       
+        <StackPanel Grid.Row="3" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0">
+            <Label Content="员工(*)" Width="70" Margin="10,3,0,3"/>
+            <ComboBox Name="CboUser" SelectedValue="{Binding Path=UserGUID,Mode=TwoWay}" Width="120" Margin="5,3,10,3" TabIndex="2"/>
+            <Label Content="备注" Margin="10,0,0,0"/>
+            <TextBox Text="{Binding Remark,Mode=TwoWay}" Width="120" Margin="5,3,10,3" Name="txtRemark" />
+        </StackPanel>
+        <DataGrid Grid.Row="4" Grid.ColumnSpan="3" AutoGenerateColumns="False"  HorizontalAlignment="Stretch" Margin="0,0,0,0" Name="dataGrid1" IsReadOnly="True" ColumnWidth="1*">            
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding ProductID}" Visibility="Collapsed" />
+                <DataGridTextColumn Header="编号" Binding="{Binding ProductCode}"/>
+                <DataGridTextColumn Header="名称" Binding="{Binding ProductName}" />
+                <DataGridComboBoxColumn Header="计量单位" SelectedValueBinding="{Binding Path=UnitGUID}"/>
+                <DataGridComboBoxColumn Header="类别" SelectedValueBinding="{Binding Path=TypeGUID}"/>
+                <DataGridComboBoxColumn Header="性质" SelectedValueBinding="{Binding Path=PropertyID}"/>
+                <DataGridComboBoxColumn Header="退库库位" SelectedValueBinding="{Binding Path=CreditLocationGUID}"/>
+                <DataGridTemplateColumn Header="退库数量">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock HorizontalAlignment="Right" Text="{Binding CreditNumber,Mode=TwoWay}" Foreground="{Binding CreditNumber,Converter={StaticResource ColorConverter}}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="单位成本">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock HorizontalAlignment="Right" Text="{Binding CreditCost,Mode=OneWay,StringFormat={}\{0:N3\}}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="退库金额">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock HorizontalAlignment="Right" Text="{Binding CreditAmount,Mode=OneWay,StringFormat={}\{0:N3\}}"  Foreground="{Binding CreditAmount,Converter={StaticResource ColorConverter}}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="销售数量">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock HorizontalAlignment="Right" Text="{Binding SalesNumber,Mode=OneWay,StringFormat={}\{0:N2\}}" Foreground="{Binding SalesNumber,Converter={StaticResource ColorConverter}}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="销售单价">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock HorizontalAlignment="Right" Text="{Binding SalesPrice,Mode=OneWay,StringFormat={}\{0:N\}}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="销售金额">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock HorizontalAlignment="Right" Text="{Binding SalesAmount,Mode=OneWay,StringFormat={}\{0:N2\}}" Foreground="{Binding SalesAmount,Converter={StaticResource ColorConverter}}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Grid Grid.Row="5" Grid.ColumnSpan="3" HorizontalAlignment="Stretch" VerticalAlignment="Top" Name="gridTotalFooter" Height="25">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0"/>
+            <TextBlock Grid.Column="4" VerticalAlignment="Bottom" HorizontalAlignment="Center" Text="合        计" TextAlignment="Center" Padding="0,0,0,0" FontWeight="Bold" FontSize="16"/>
+            <TextBlock VerticalAlignment="Bottom" Grid.Column="5" HorizontalAlignment="Right" Text="{Binding TotalDebitNumber}" TextAlignment="Right" Padding="0,0,0,0" FontWeight="Bold" Foreground="{Binding TotalDebitNumber,Converter={StaticResource ColorConverter}}" Name="txtTotalDebitNumber" FontSize="16"/>
+            <TextBlock VerticalAlignment="Bottom" Grid.Column="7" HorizontalAlignment="Right" Text="{Binding TotalDebitAmount,StringFormat={}{0:N2}}" TextAlignment="Right" Padding="0,0,0,0" FontWeight="Bold" Foreground="{Binding TotalDebitAmount,Converter={StaticResource ColorConverter}}" Name="txtTotalDebitAmount" FontSize="16" Visibility="Collapsed"/>
+            <TextBlock VerticalAlignment="Bottom" Grid.Column="8" HorizontalAlignment="Right" Text="{Binding TotalSalesNumber}" TextAlignment="Right" Padding="0,0,0,0" FontWeight="Bold" Foreground="{Binding TotalSalesNumber,Converter={StaticResource ColorConverter}}" Name="txtTotalSalesNumber" FontSize="16"/>
+            <TextBlock VerticalAlignment="Bottom" Grid.Column="10" HorizontalAlignment="Right" Text="{Binding TotalSalesAmount,StringFormat={}{0:N2}}" TextAlignment="Right" Padding="0,0,0,0" FontWeight="Bold" Foreground="{Binding TotalSalesAmount,Converter={StaticResource ColorConverter}}" Name="txtTotalSalesAmount" FontSize="16"/>
+        </Grid>
+    </Grid>
+</Window>

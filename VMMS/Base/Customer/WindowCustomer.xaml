@@ -1,0 +1,44 @@
+﻿<Window x:Class="VMMS.WindowCustomer"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="供应商" Height="490" Width="320" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Grid Margin="0,20,0,10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="90" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="40" />
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Column="0">
+            <Label Content="编号(*)" Height="25" Margin="15,5,10,5" />
+            <Label Content="名称(*)" Height="25" Margin="15,5,10,5" />
+            <Label Content="助记码" Height="25" Margin="15,5,10,5" />
+            <Label Content="联系电话" Height="25" Margin="15,5,10,5" />
+            <Label Content="电子邮件" Height="25" Margin="15,5,10,5" />
+            <Label Content="联系地址" Height="25" Margin="15,5,10,5" />
+            <Label Content="联系人" Height="25" Margin="15,5,10,5" />
+            <Label Content="手机号" Height="25" Margin="15,5,10,5" />
+            <Label Content="开户银行" Height="25" Margin="15,5,10,5" />        
+            <Label Content="银行账号" Height="25" Margin="15,5,10,5" />
+            <Label Content="税号" Height="25" Margin="15,5,10,5" />    </StackPanel>
+        <StackPanel Grid.Column="1">
+            <TextBox Name="txtCode" Text="{Binding CustomerCode,Mode=TwoWay}" TabIndex="0" Height="25" Margin="5,5,10,5" />
+            <TextBox Name="txtName" Text="{Binding CustomerName,Mode=TwoWay}" TabIndex="1"  Height="25" Margin="5,5,10,5" LostFocus="txtName_LostFocus"/>
+            <TextBox Name="txtMnemonicCode" Text="{Binding MnemonicCode,Mode=TwoWay}" TabIndex="2" Height="25" Margin="5,5,10,5" />
+            <TextBox Name="txtPhone" Text="{Binding Phone,Mode=TwoWay}" TabIndex="3"  Height="25" Margin="5,5,10,5" />
+            <TextBox Name="txtEmail" Text="{Binding Email,Mode=TwoWay}" TabIndex="3"  Height="25" Margin="5,5,10,5" />
+            <TextBox Name="txtLinkAddress" Text="{Binding LinkAddress,Mode=TwoWay}" TabIndex="3"  Height="25" Margin="5,5,10,5" />
+            <TextBox Name="txtLinkMan" Text="{Binding LinkMan,Mode=TwoWay}" TabIndex="3"  Height="25" Margin="5,5,10,5" />
+            <TextBox Name="txtMobilePhone" Text="{Binding MobilePhone,Mode=TwoWay}" TabIndex="3"  Height="25" Margin="5,5,10,5" />
+            <TextBox Name="txtBankName" Text="{Binding BankName,Mode=TwoWay}" TabIndex="3"  Height="25" Margin="5,5,10,5" />
+            <TextBox Name="txtBankAccount" Text="{Binding BankAccount,Mode=TwoWay}" TabIndex="3"  Height="25" Margin="5,5,10,5" />
+            <TextBox Name="txtTaxNumber" Text="{Binding TaxNumber,Mode=TwoWay}" TabIndex="3"  Height="25" Margin="5,5,10,5" />
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button Content="确认" Margin="0,10,0,5" Width="65"  Name="BtnOK" Click="BtnOK_Click" IsDefault="True"/>
+            <Button Content="取消" Margin="50,10,0,5" Width="65"  Name="BtnCancel" Click="BtnCancel_Click" IsCancel="True"/>
+        </StackPanel>
+    </Grid>
+</Window>
