@@ -22,7 +22,7 @@ namespace VMMS
         {"StoreTelephone", "12345678901"},
         {"StoreAddress", "中国"},
         {"PrinterName", ""},
-        {"PrinterNum", "0"},
+        {"PrinterNum", "3"},
         {"FontsName", ""}
         // 在这里添加更多默认配置项
     };

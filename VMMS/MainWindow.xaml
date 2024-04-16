@@ -86,8 +86,8 @@ See the Mulan PubL v2 for more details.
                         <RowDefinition Height="100"/>
                         <RowDefinition Height="100"/>
                         <RowDefinition Height="50"/>
+                        <RowDefinition Height="20"/>
                         <RowDefinition Height="100"/>
-                        <RowDefinition Height="10"/>
                         <RowDefinition Height="1*"/>
                     </Grid.RowDefinitions>
                     <Button Grid.Column="0" Grid.Row="0" x:Name="BtnExit" Content="退货单" Height="50" Width="100" HorizontalAlignment="Center" VerticalAlignment="Bottom" Click="BtnExit_Click" RenderTransformOrigin="0.5,0.508"/>
@@ -102,11 +102,19 @@ See the Mulan PubL v2 for more details.
                     <Line Grid.Column="2" Grid.Row="3" X1="0" Y1="0" X2="0" Y2="150" Stroke="Blue" StrokeThickness="5" HorizontalAlignment="Center" Visibility="Collapsed"/>
                     <Line Grid.Column="3" Grid.Row="2" X1="0" Y1="0" X2="150" Y2="0" Stroke="Blue" StrokeThickness="5" VerticalAlignment="Center" Margin="0,20,0,50"/>
                     <Button Grid.Column="4" Grid.Row="2" x:Name="BtnRepair" Content="维修单" Height="50" Width="100" HorizontalAlignment="Center" VerticalAlignment="Top" Click="BtnRepair_Click"/>
-                    <TextBlock x:Name="tbNotComplete" Grid.Row="3" Grid.ColumnSpan="5">
+                    <TextBlock x:Name="tbNotComplete" Grid.Row="3" Grid.ColumnSpan="5" Margin="0,0,0,5">
                         <Hyperlink x:Name="hlNext" Click="hlNext_Click">
                             <TextBlock x:Name="txtNotComplete" Text="" />
                         </Hyperlink>
                     </TextBlock>
+                    <Label Grid.Row="4" Name="lbNotComplete" Margin="0,0,0,0" Grid.ColumnSpan="5" >
+                        <Label.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Header="刷新" Click="lbRefresh_Click"/>
+                                <!-- 其他菜单项 -->
+                            </ContextMenu>
+                        </Label.ContextMenu>
+                    </Label>
                     <StackPanel Grid.Column="6" Grid.Row="0" Grid.RowSpan="7" Margin="50,0,20,0">
                         <TextBlock Margin="5,5,5,5" Text="统计报表"/>
                         <TextBlock Margin="5,5,5,5">

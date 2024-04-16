@@ -361,11 +361,16 @@ namespace VMMS
             var billList = DalBill.GetList(objs) ?? new List<ObjBill>(); // 使用null合并操作符确保列表不为null
 
             // 确保txtNotComplete已实例化
-            if (txtNotComplete != null)
+            if (lbNotComplete != null)
             {
-                txtNotComplete.Text = string.Format("30日内需保养的汽车数量：{0}，未完成维修单数量：{1}", carList.Count, billList.Count);
+                lbNotComplete.Content = string.Format("30日内需保养的汽车数量：{0}        未完成维修单数量：{1}", carList.Count, billList.Count);
             }
 
+        }
+        private void lbRefresh_Click(object sender, RoutedEventArgs e)
+        {
+            lbNotComplete.Content = "";
+            RefreshKanbanData();
         }
 
         private void BtnMove_Click(object sender, RoutedEventArgs e)
