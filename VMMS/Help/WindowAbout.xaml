@@ -35,11 +35,13 @@
             <StackPanel Grid.Column="0">
                 <TextBlock Margin="5,5,5,5" Text="组件：NPOI"/>
                 <TextBlock Margin="5,5,5,5" Text="组件：Gu.Wpf.NumericInput"/>
+                <TextBlock Margin="5,5,5,5" Text="图标：Material Design Icons"/>
                 <TextBlock Margin="5,5,5,5" Text="OpenCRS"/>
             </StackPanel>
             <StackPanel Grid.Column="1">
                 <TextBlock Margin="5,5,5,5" Text="Version：2.5.3"/>
                 <TextBlock Margin="5,5,5,5" Text="Version：0.5.5"/>
+                <TextBlock Margin="5,5,5,5" Text="Version："/>
                 <TextBlock Margin="5,5,5,5" Text="Version：1.2.1"/>
             </StackPanel>
             <StackPanel Grid.Column="2">
@@ -50,7 +52,10 @@
             <Hyperlink Click="link2_Click">许可证：MIT</Hyperlink>
                 </TextBlock>
                 <TextBlock Margin="5,5,5,5">
-            <Hyperlink Click="link3_Click">许可证：MulanPubL-2.0</Hyperlink>
+            <Hyperlink Click="link3_Click">许可证：Apache License2.0</Hyperlink>
+                </TextBlock>
+                <TextBlock Margin="5,5,5,5">
+            <Hyperlink Click="link4_Click">许可证：MulanPubL-2.0</Hyperlink>
                 </TextBlock>
             </StackPanel>
         </Grid>

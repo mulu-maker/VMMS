@@ -11,23 +11,25 @@
             <RowDefinition Height="1*" />
             <RowDefinition Height="40" />
         </Grid.RowDefinitions>
-        <StackPanel Grid.Column="0" Margin="0,0,0,40" Grid.RowSpan="6">
+        <StackPanel Grid.Column="0" Margin="0,0,0,40" Grid.RowSpan="7">
             <Label Content="字体选择：" Height="25" Margin="10,5,10,5" />
             <Label Content="打印机名字：" Height="25" Margin="10,5,10,5" />
             <Label Content="门店名字：" Height="25" Margin="10,5,10,5" />
             <Label Content="门店电话：" Height="25" Margin="10,5,10,5" />
             <Label Content="门店地址：" Height="25" Margin="10,5,10,5"/>
-            <Label Content="门店感谢词：" Height="25" Margin="10,5,10,5"/>
+            <Label Content="门店感谢词：" Height="60" Margin="10,5,10,5"/>
+            <Label Content="备注：" Height="60" Margin="10,5,10,5"/>
         </StackPanel>
-        <StackPanel Grid.Column="1" Margin="0,0,0,40" Grid.RowSpan="5">
+        <StackPanel Grid.Column="1" Margin="0,0,0,40" Grid.RowSpan="6">
             <ComboBox  Name="FontsName" Height="25" Margin="5,5,10,5" TabIndex="1"/>
-            <ComboBox Name="PrinterName"  Height="25" Margin="5,5,10,5" TabIndex="1"/>
+            <ComboBox  Name="PrinterName"  Height="25" Margin="5,5,10,5" TabIndex="1"/>
             <TextBox Name="txtStoreName"  Height="25" Margin="5,5,10,5" />
             <TextBox Name="txtStoreTelephone"  TabIndex="0" Height="25" Margin="5,5,10,5" />
             <TextBox x:Name="txtStoreAddress"  TabIndex="0" Height="25" Margin="5,5,10,5" />
-            <TextBox x:Name="txtStoreThank"  TabIndex="0" Height="100" Margin="5,5,10,5" />
+            <TextBox x:Name="txtStoreThank"  TabIndex="0" Height="60" Margin="5,5,10,5" />
+            <TextBox x:Name="txtStoreThank2"  TabIndex="0" Height="60" Margin="5,5,10,5" />
         </StackPanel>
-        <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Left" Margin="80,0,0,0" Width="210" >
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Left" Width="212" Grid.Column="1" >
             <Button Content="确认" Margin="0,0,0,15" Width="75" Name="BtnOK" Click="BtnOK_Click" TabIndex="2" IsDefault="True"/>
             <Button Content="取消" Margin="60,0,0,15" Width="75" Name="BtnCancel" Click="BtnCancel_Click" TabIndex="3" IsCancel="True" />
         </StackPanel>

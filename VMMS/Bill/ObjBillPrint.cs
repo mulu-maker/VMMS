@@ -16,10 +16,11 @@ namespace VMMS
         public ObjBill obj;
         // 读取配置项
         string StoreName = StoreSetting.Instance.settings["StoreName"]; 
-        string StoreThank = StoreSetting.Instance.settings["StoreThank"];
+        string StoreThank = StoreSetting.Instance.settings["StoreThank"]+ "\r\n" + StoreSetting.Instance.settings["StoreThank2"];
         string StoreTelephone = StoreSetting.Instance.settings["StoreTelephone"];
         string StoreAddress = StoreSetting.Instance.settings["StoreAddress"];
         string PrinterName = StoreSetting.Instance.settings["PrinterName"];
+        string PrinterNum = StoreSetting.Instance.settings["PrinterNum"];
         //维修单
         public void PrintStartRepair()
         {
@@ -97,8 +98,8 @@ namespace VMMS
             decimal GS_SalesAmount = 0;
             foreach (var row in obj.ListDetail)
             {
-                if (row.PropertyID == 5) 
-                { 
+                if (row.PropertyID == 5)
+                {
                     v++;
                     newRow = new List<BasePrintClass.Cell>
                     {
@@ -223,7 +224,7 @@ namespace VMMS
             tableData.Add(newRow);
             newRow = new List<BasePrintClass.Cell>
                 {
-                    new BasePrintClass.Cell(StoreThank, 750, 44,ContentFontSize, CellContentAlignment.BottomLeft)
+                    new BasePrintClass.Cell(StoreThank, 750, ContentHeight*2,ContentFontSize, CellContentAlignment.BottomLeft)
                 };
             tableData.Add(newRow);
             newRow = new List<BasePrintClass.Cell>
@@ -241,14 +242,22 @@ namespace VMMS
 
             // 设置打印类的表格数据
             printer.TableData = tableData;
-            // 打印预览（在实际应用中，可以根据用户的选择来调用 PrintStart 或 PrintView）
-            //printer.PrintView();
+            if (PrinterNum == "0")
+            {
+                // 打印预览（在实际应用中，可以根据用户的选择来调用 PrintStart 或 PrintView）
+                printer.PrintView();
+            }
+            else if (PrinterNum == "1")
+            {
+                //用户选择打印机、指定打印份数和其他打印选项
+                printer.PrintSet();
+            }
+            else
+            {
+                // 直接开始打印（根据实际需求调用）
+                printer.PrintStart();
+            }
 
-            //用户选择打印机、指定打印份数和其他打印选项
-            //printer.PrintSet();
-
-            // 直接开始打印（根据实际需求调用）
-            printer.PrintStart();
         }
     }
 }

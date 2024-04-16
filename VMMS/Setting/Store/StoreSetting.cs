@@ -18,10 +18,12 @@ namespace VMMS
     {
         {"StoreName", "XXX维修中心"},
         {"StoreThank", "XXX维修中心感谢您的支持及信任，祝您用车愉快，欢迎下次光临!"},
+        {"StoreThank2", ""},
         {"StoreTelephone", "12345678901"},
         {"StoreAddress", "中国"},
         {"PrinterName", ""},
-        {"FontsName", "SourceHanSerifSC-Bold.otf"}
+        {"PrinterNum", "0"},
+        {"FontsName", ""}
         // 在这里添加更多默认配置项
     };
         //// 更新配置项示例
@@ -80,7 +82,7 @@ namespace VMMS
                 var setting = appSettingsElement?.Elements("add").FirstOrDefault(s => s.Attribute("key")?.Value == defaultSetting.Key);
                 if (setting == null)
                 {
-                    MessageBox.Show("配置缺失，已初始化配置项！");
+                    MessageBox.Show(string.Format("配置项：“{0}”缺失，已初始化配置项！", defaultSetting.Key));
                     appSettingsElement?.Add(new XElement("add", new XAttribute("key", defaultSetting.Key), new XAttribute("value", defaultSetting.Value)));
                 }
             }

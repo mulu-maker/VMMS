@@ -49,20 +49,20 @@ namespace VMMS
                 PrinterName.Items.Add(printerName);
             }
             string defaultPrinterName = settings.settings["PrinterName"];
-            if (!string.IsNullOrEmpty(defaultPrinterName) && FontsName.Items.Contains(defaultPrinterName))
+            if (!string.IsNullOrEmpty(defaultPrinterName) && PrinterName.Items.Contains(defaultPrinterName))
             {
-                FontsName.SelectedItem = defaultPrinterName;
+                PrinterName.SelectedItem = defaultPrinterName;
                 // 可选：设置默认选定的打印机
             }
-            else if (printerNames.Count > 0)
+            else if (PrinterName.Items.Count > 0)
             {
                 PrinterName.SelectedIndex = 0; // 默认选择第一个打印机
             }
-            PrinterName.Text = settings.settings["PrinterName"];
             txtStoreName.Text = settings.settings["StoreName"];
             txtStoreTelephone.Text = settings.settings["StoreTelephone"];
             txtStoreAddress.Text = settings.settings["StoreAddress"];
-                txtStoreThank.Text = settings.settings["StoreThank"];
+            txtStoreThank.Text = settings.settings["StoreThank"];
+            txtStoreThank2.Text = settings.settings["StoreThank2"];
         }
 
         private void BtnOK_Click(object sender, RoutedEventArgs e)
@@ -84,7 +84,8 @@ namespace VMMS
             settings.settings["StoreTelephone"] = txtStoreTelephone.Text;
             settings.settings["StoreAddress"] = txtStoreAddress.Text;
             settings.settings["StoreThank"] = txtStoreThank.Text;
-            
+            settings.settings["StoreThank2"] = txtStoreThank2.Text;
+
             // 这里调用保存到配置文件的逻辑
             settings.SaveSettings(); // 假设StoreSetting有一个方法来保存设置
             this.Close();

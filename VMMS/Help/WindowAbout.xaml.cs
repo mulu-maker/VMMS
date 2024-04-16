@@ -59,6 +59,10 @@ namespace VMMS
         }
         private void link3_Click(object sender, RoutedEventArgs e)
         {
+            BaseFileClass.OpenFile("Apache2.txt");
+        }
+        private void link4_Click(object sender, RoutedEventArgs e)
+        {
             BaseFileClass.OpenFile("license.txt");
         }
 
