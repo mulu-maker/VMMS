@@ -13,6 +13,7 @@ namespace VMMS
     internal class BasePrintClass
     {
         private PrintDocument printDocument;
+        bool cellFont_errr = false;
 
         public string PrinterName;
         // 用于存储表格数据的公共属性
@@ -50,12 +51,6 @@ namespace VMMS
             float x = startX;
             float y = startY;
             string FontsName = StoreSetting.Instance.settings["FontsName"];
-            //加载字体
-            string fontPath = String.Format(@"Fonts\{0}", FontsName);
-
-            PrivateFontCollection privateFonts = new PrivateFontCollection();
-            privateFonts.AddFontFile(fontPath); // 指定字体文件的路径
-
 
             foreach (var row in tableData)
             {
@@ -67,17 +62,17 @@ namespace VMMS
                     // 将单元格的尺寸从英寸转换为像素
                     float cellWidthInPixels = (cell.Width / 100) * dpiX;
                     float cellHeightInPixels = (cell.Height / 100) * dpiY;
-                    // 检查是否成功加载了字体
-                    if (privateFonts.Families.Length > 0)
-                    {
-                        // 使用加载的字体
-                        cellFont = new Font(privateFonts.Families[0], cell.FontSize);   //Arial
-                    }
-                    else
-                    {
-                        // 如果没有加载到任何字体，可能需要处理错误情况
-                        MessageBox.Show($"无法加载字体文件:“{fontPath}”，将使用默认字体。");
-                        cellFont = new Font("等线", cell.FontSize);   //Arial
+
+                    //cellFont = new Font("等线", cell.FontSize);   //Arial
+                    cellFont = TryCreateFont(FontsName, cell.FontSize);
+                    if (cellFont.Name != FontsName) {
+                        cellFont = new Font("等线", cell.FontSize);
+                        if (!cellFont_errr)
+                        {
+                            MessageBox.Show($"创建字体异常，使用默认字体: {cellFont.Name}");
+                            cellFont_errr = true;
+                        }
+                        
                     }
                     StringFormat stringFormat = new StringFormat();
 
@@ -211,6 +206,24 @@ namespace VMMS
                 {
                     MessageBox.Show(excep.Message, "打印出错", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+            }
+        }
+
+        private Font TryCreateFont(string fontName, float fontSize)
+        {
+            try
+            {
+                return new Font(fontName, fontSize);
+            }
+            catch (ArgumentException ex)
+            {
+                if (!cellFont_errr)
+                {
+                    MessageBox.Show($"无法创建字体 '{fontName}'. 错误: {ex.Message}");
+                    cellFont_errr = true;
+                }
+                // 返回一个默认字体
+                return new Font("等线", fontSize);
             }
         }
 

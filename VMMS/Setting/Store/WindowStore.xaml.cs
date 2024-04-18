@@ -1,10 +1,8 @@
-﻿using System.IO;
-using System;
-using System.Windows;
-using System.Linq;
-using System.Collections.ObjectModel;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Drawing;
 using System.Drawing.Printing;
+using System.Drawing.Text;
+using System.Windows;
 
 namespace VMMS
 {
@@ -13,8 +11,6 @@ namespace VMMS
     /// </summary>
     public partial class WindowStore : Window
     {
-        public List<string> FontsNameList { get; private set; } = new List<string>();
-
         public WindowStore()
         {
             InitializeComponent();
@@ -23,13 +19,9 @@ namespace VMMS
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             var settings = StoreSetting.Instance;
-            LoadFontsFromFolder();
 
-            // 填充ComboBox的Items
-            foreach (var fontName in FontsNameList)
-            {
-                FontsName.Items.Add(fontName);
-            }
+            List<string> installedFonts = GetInstalledFonts();
+            FontsName.ItemsSource = installedFonts;
             // 从Settings.settings读取FontsName值并设置默认选定项
             string defaultFontName = settings.settings["FontsName"];
             if (!string.IsNullOrEmpty(defaultFontName) && FontsName.Items.Contains(defaultFontName))
@@ -96,24 +88,17 @@ namespace VMMS
         {
             this.Close();
         }
-        private void LoadFontsFromFolder()
+        public List<string> GetInstalledFonts()
         {
-            // 指定字体文件夹路径，这里使用相对路径"./Fonts"
-            string fontsPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Fonts");
+            InstalledFontCollection fontsCollection = new InstalledFontCollection();
+            List<string> fontsList = new List<string>();
 
-            if (Directory.Exists(fontsPath))
+            foreach (FontFamily font in fontsCollection.Families)
             {
-                // 获取.ttf和.otf字体文件
-                var fontFiles = Directory.GetFiles(fontsPath)
-                                         .Where(file => file.EndsWith(".ttf") || file.EndsWith(".otf"));
-
-                foreach (string file in fontFiles)
-                {
-                    // 添加文件的完整名称（包括扩展名）到FontsNameList
-                    var fileNameWithExtension = Path.GetFileName(file);
-                    FontsNameList.Add(fileNameWithExtension);
-                }
+                fontsList.Add(font.Name);
             }
+
+            return fontsList;
         }
         private List<string> LoadPrinterNames()
         {

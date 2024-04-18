@@ -23,7 +23,7 @@ namespace VMMS
         {"StoreAddress", "中国"},
         {"PrinterName", ""},
         {"PrinterNum", "3"},
-        {"FontsName", ""}
+        {"FontsName", "等线"}
         // 在这里添加更多默认配置项
     };
         //// 更新配置项示例
