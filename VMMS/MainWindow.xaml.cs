@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Data;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Windows;
-using NPOI.SS.Formula.Functions;
 
 namespace VMMS
 {
@@ -26,6 +25,8 @@ namespace VMMS
                 txtNotComplete.Text = "超期1月未完成提醒：" + l.Count;
             }
             RefreshKanbanData();
+            WebApi webApi = new WebApi();
+            webApi.StartWebApi();
         }
 
         private void GetConfig()

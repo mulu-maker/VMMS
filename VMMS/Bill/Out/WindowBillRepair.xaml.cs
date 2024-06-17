@@ -336,6 +336,7 @@ namespace VMMS
                     System.Windows.MessageBox.Show("无此车辆！请输入正确的车牌号！");
                     TxtCar.Text = null;
                     Keyboard.Focus(TxtCar);
+                    //LoadCar(DalCar.InputNew());//检查备件、库位是否在单据明细重复（不含库存属性）//必须唯一库位、不能分库位存放，否则不返回备件数据对象
                 }
             }
             else
